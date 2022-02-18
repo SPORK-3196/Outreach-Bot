@@ -7,8 +7,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.JoystickMove;
+import frc.robot.commands.SpinInPlace;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -18,15 +21,15 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveTrain m_exampleSubsystem = new DriveTrain();
+  private final DriveTrain driveTrain = new DriveTrain();
 
-  private final JoystickMove m_autoCommand = new JoystickMove(m_exampleSubsystem);
+  private final JoystickMove joystickControl = new JoystickMove(driveTrain);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_exampleSubsystem.setDefaultCommand(m_autoCommand);
+    driveTrain.setDefaultCommand(joystickControl);
   }
 
   /**
@@ -34,8 +37,11 @@ public class RobotContainer {
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {}
+   */ 
+  private void configureButtonBindings() {
+    JoystickButton attackButton = new JoystickButton(Robot.DriveStick, Robot.DriveStick.getRawButton(1));
+    attackButton.whenHeld(new SpinInPlace(driveTrain));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -44,6 +50,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return joystickControl;
   }
 }
