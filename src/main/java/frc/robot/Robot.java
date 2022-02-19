@@ -23,8 +23,11 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  public static Joystick DriveStick;
-  
+  public static Joystick DriveStick = new Joystick(0);
+  public static JoystickButton button5 = new JoystickButton(Robot.DriveStick, 5);
+  public static JoystickButton button4 = new JoystickButton(Robot.DriveStick, 4);
+  public static JoystickButton button3 = new JoystickButton(Robot.DriveStick, 3);
+  public static JoystickButton button2 = new JoystickButton(Robot.DriveStick, 2);
 
    
   /**
@@ -36,7 +39,12 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    button5 = new JoystickButton(Robot.DriveStick, 5);
+    button4 = new JoystickButton(Robot.DriveStick, 4);
+    button3 = new JoystickButton(Robot.DriveStick, 3);
+    button2 = new JoystickButton(Robot.DriveStick, 2);
     DriveStick = new Joystick(0);
+    
    
   }
 

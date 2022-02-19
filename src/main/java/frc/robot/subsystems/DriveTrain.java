@@ -4,7 +4,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.music.Orchestra;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -16,14 +18,20 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonSRX motor3 = new WPI_TalonSRX(3);
   private final WPI_TalonSRX motor4 = new WPI_TalonSRX(4);
 
-  public MotorControllerGroup left = new MotorControllerGroup(motor1, motor2);
-  public MotorControllerGroup right = new MotorControllerGroup(motor3, motor4);
+
+
+  public MotorControllerGroup left = new MotorControllerGroup(motor1, motor3);
+  public MotorControllerGroup right = new MotorControllerGroup(motor2, motor4);
 
   public final DifferentialDrive drive = new DifferentialDrive(left, right);
   
   /** Creates a new ExampleSubsystem. */
   public DriveTrain() {
-
+    right.setInverted(true);
+    motor1.setNeutralMode(NeutralMode.Brake);
+    motor2.setNeutralMode(NeutralMode.Brake);
+    motor3.setNeutralMode(NeutralMode.Brake);
+    motor4.setNeutralMode(NeutralMode.Brake);
   }
   
 

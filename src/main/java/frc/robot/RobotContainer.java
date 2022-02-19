@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.GunIt;
 import frc.robot.commands.JoystickMove;
 import frc.robot.commands.SpinInPlace;
 import frc.robot.subsystems.DriveTrain;
@@ -22,7 +23,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain driveTrain = new DriveTrain();
-
+  private final SpinInPlace rotateRight = new SpinInPlace(driveTrain, 0.6);
+  private final SpinInPlace rotateLeft = new SpinInPlace(driveTrain, -0.6);
+  private final GunIt moveForward = new GunIt(driveTrain, 1.0);
+  private final GunIt moveBackward = new GunIt(driveTrain, -1.0);
   private final JoystickMove joystickControl = new JoystickMove(driveTrain);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -39,8 +43,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */ 
   private void configureButtonBindings() {
-    JoystickButton attackButton = new JoystickButton(Robot.DriveStick, Robot.DriveStick.getRawButton(1));
-    attackButton.whenHeld(new SpinInPlace(driveTrain));
+    Robot.button5.whenHeld(rotateRight);
+    Robot.button4.whenHeld(rotateLeft);
+    Robot.button3.whenHeld(moveForward);
+    Robot.button2.whenHeld(moveBackward);
   }
 
   /**
