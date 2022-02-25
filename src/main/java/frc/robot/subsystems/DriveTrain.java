@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.music.Orchestra;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -17,7 +18,7 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonSRX motor2 = new WPI_TalonSRX(2);
   private final WPI_TalonSRX motor3 = new WPI_TalonSRX(3);
   private final WPI_TalonSRX motor4 = new WPI_TalonSRX(4);
-
+  private final PigeonIMU gyroscope = new PigeonIMU(2);
 
 
   public MotorControllerGroup left = new MotorControllerGroup(motor1, motor3);
@@ -34,6 +35,9 @@ public class DriveTrain extends SubsystemBase {
     motor4.setNeutralMode(NeutralMode.Brake);
   }
   
+  public double getYaw() {
+    return gyroscope.getYaw();
+  }
 
   @Override
   public void periodic() {

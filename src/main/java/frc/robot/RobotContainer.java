@@ -43,10 +43,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */ 
   private void configureButtonBindings() {
-    Robot.button5.whenHeld(rotateRight);
-    Robot.button4.whenHeld(rotateLeft);
-    Robot.button3.whenHeld(moveForward);
-    Robot.button2.whenHeld(moveBackward);
+    Robot.button5.whenHeld(new SpinInPlace(driveTrain, 0.6));
+    Robot.button4.whenHeld(new SpinInPlace(driveTrain, -0.6));
+    Robot.button3.whenHeld(new GunIt(driveTrain, 1.0));
+    Robot.button2.whenHeld(new GunIt(driveTrain, -1.0));
   }
 
   /**

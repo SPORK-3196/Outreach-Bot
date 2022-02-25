@@ -8,7 +8,7 @@ public class SpinInPlace extends CommandBase {
   private final DriveTrain driveTrain;
   double rotationSpeed = 0.5;
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new SpinInPlace.
    *
    * @param subsystem The subsystem used by this command.
    */
