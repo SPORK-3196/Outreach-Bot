@@ -18,7 +18,7 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonSRX motor2 = new WPI_TalonSRX(2);
   private final WPI_TalonSRX motor3 = new WPI_TalonSRX(3);
   private final WPI_TalonSRX motor4 = new WPI_TalonSRX(4);
-  private final PigeonIMU gyroscope = new PigeonIMU(2);
+  private final PigeonIMU gyroscope = new PigeonIMU(motor2);
 
 
   public MotorControllerGroup left = new MotorControllerGroup(motor1, motor3);
@@ -41,7 +41,7 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    
+    System.out.println(gyroscope.getYaw());
   }
 
   @Override
