@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.GunIt;
 import frc.robot.commands.JoystickMove;
+import frc.robot.commands.SetTargetAngle;
 import frc.robot.commands.SpinInPlace;
+import frc.robot.commands.ToThePoint;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -45,8 +47,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     Robot.button5.whenHeld(new SpinInPlace(driveTrain, 0.6));
     Robot.button4.whenHeld(new SpinInPlace(driveTrain, -0.6));
-    Robot.button3.whenHeld(new ToThePoint(driveTrain, 1.0));
-    Robot.button2.whenHeld(new GunIt(driveTrain, -1.0));
+    Robot.button3.whenHeld(new SetTargetAngle(driveTrain).andThen(new ToThePoint(driveTrain, 0.5)));
+    Robot.button2.whenHeld(new SetTargetAngle(driveTrain).andThen(new ToThePoint(driveTrain, -0.5)));
   }
 
   /**

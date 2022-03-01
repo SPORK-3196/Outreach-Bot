@@ -13,6 +13,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static double orientation = 0;
+    public static double straightTurn = 0;
     public static final class JoyStick {
         public static double joyStickX;
         public static double joyStickY;

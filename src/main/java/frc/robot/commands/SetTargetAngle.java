@@ -12,22 +12,19 @@ import static frc.robot.Constants.JoyStick.*;
 
 
 /** An example command that uses an example subsystem. */
-public class ToThePoint extends CommandBase {
+public class SetTargetAngle extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain drivetrain;
-  private double speed = 0.5;
+  
   private double angleError = 0;
-  private double turnPower = 0;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ToThePoint(DriveTrain subsystem, double speed) {
+  public SetTargetAngle(DriveTrain subsystem) {
     drivetrain = subsystem;
-
-    this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -35,29 +32,24 @@ public class ToThePoint extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    drivetrain.drivePID.setSetpoint(orientation);
+    orientation = drivetrain.getYaw();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    angleError = drivetrain.drivePID.calculate(drivetrain.getYaw()); 
-    drivetrain.drive.arcadeDrive(speed, turnPower);
-    System.out.println(angleError);
-    System.out.println(turnPower);
+    angleError = orientation - drivetrain.getYaw(); 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.left.stopMotor();
-    drivetrain.right.stopMotor();
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
