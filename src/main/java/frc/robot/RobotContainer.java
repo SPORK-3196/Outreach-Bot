@@ -25,7 +25,7 @@ public class RobotContainer {
   private final DriveTrain driveTrain = new DriveTrain();
   private final SpinInPlace rotateRight = new SpinInPlace(driveTrain, 0.6);
   private final SpinInPlace rotateLeft = new SpinInPlace(driveTrain, -0.6);
-  private final GunIt moveForward = new GunIt(driveTrain, 1.0);
+  private final ToThePoint moveForward = new ToThePoint(driveTrain, 1.0);
   private final GunIt moveBackward = new GunIt(driveTrain, -1.0);
   private final JoystickMove joystickControl = new JoystickMove(driveTrain);
 
